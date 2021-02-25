@@ -50,49 +50,16 @@ function getAnime() {
                 var anime = results[count];
                 document.getElementById("anime-container").insertAdjacentHTML("beforeend", createMockup(anime));
                 count ++;
-            }
-            
+            }       
         };
     }
-    
 }
 
 document.getElementById("title").addEventListener("keydown", event =>{
     if (event.code == "Enter"){
         getAnime();
     }
-})
-
-function animeRequest(anime){
-    let link = "https://api.jikan.moe/v3/search/anime?q=" + anime + "&page=1";
-    if (xhr == false) {
-        alert("Unable to use service with current browser.");
-    }
-    else {
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    console.log("Request is successful.");
-                }
-            }
-        };
-        xhr.open("GET", link);
-        xhr.send(null);
-        xhr.onload = () => {
-            const json = JSON.parse(xhr.responseText);
-            console.log(json["results"]);
-            let limit = (json["results"].length < 15) ? json.results.length : 15;
-            let count = 0;
-            let results = json["results"];
-            while (count < limit) {
-                var anime = results[count];
-                document.getElementById("anime-container").insertAdjacentHTML("beforeend", createMockup(anime));
-                count ++;
-            }
-            
-        };
-    }
-}
+});
 
 /**
  * CheckForHTTP()
